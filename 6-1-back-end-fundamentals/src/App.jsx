@@ -143,8 +143,8 @@ Hint:
 - second value is a function
 
 Syntax hint:
-   app.listen(____, () => {
-     console.log('________________________________');
+   app.listen(3000, () => {
+     console.log('server is running on port 3000');
    });
 
 -------------------------------------------------------------------
@@ -360,7 +360,7 @@ export default function App() {
   // Create state to store student data
   // Syntax hint:
   // const [student, setStudent] = useState(____);
-
+   const [student, setStudent] = useState(null);
   // TODO 8:
   // Request student data from the server when the page loads
   // Syntax hint:
@@ -369,6 +369,13 @@ export default function App() {
   //   .then((data) => {
   //     setStudent(data);
   //   });
+  useEffect(() => {
+  fetch('http://localhost:3000/student')
+    .then((res) => res.json())
+    .then((data) => {
+      setStudent(data);
+    });
+}, []);
 
   return (
     <main className="app-shell">
